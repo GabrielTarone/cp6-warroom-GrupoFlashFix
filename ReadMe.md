@@ -127,7 +127,41 @@ A) Corrigir o getInstancia do singleton para guardar a instância
 
 🔥 +1 | 💰 5 mil
 
-## Pontuação Final: 🔥 +1 | 💰 R$ 20 mil | 🧹 0
+## Pontuação Final (DIA 1): 🔥 +1 | 💰 R$ 20 mil | 🧹 0
+
+## Dia 2 - qui 00h → 04h
+
+**Rodada 4**
+
+Decisão: B) Corrigir o código e reprocessar os extratos antigos.
+Justificativa: corrigir apenas o código não resolve os registros incorretos já existentes. O reprocessamento corrige o histórico das transferências, mantendo a confiabilidade dos comprovantes sem movimentar o dinheiro novamente.
+
+🔥 +1 | 💰 R$ 15 mil | 🧹 -1
+
+
+**Rodada 5**
+
+Decisão: A) Aplicar fail-fast na factory.
+Justificativa: retornar null faz o erro aparecer longe de sua origem e dificulta o diagnóstico. Uma exceção clara identifica imediatamente o tipo não suportado. Como a conta Universitária é válida, também será necessário implementar sua criação na factory para liberar os cadastros.
+
+🔥 -1 | 💰 R$ 0 | 🧹 0
+
+**⚡ EVENTO RELÂMPAGO**
+
+Decisão: B) Utilizar Builder com valores padrão.
+Justificativa: o Builder facilita a criação flexível de objetos sem exigir diversos construtores. Valores padrão podem ser usados para campos opcionais, mas dados obrigatórios, como CPF e tipo de conta, devem ser validados antes de efetivar o cadastro.
+
+🔥 0 | 💰 R$ 0 | 🧹 0
+
+**Rodada 6**
+
+Decisão: B) Investigar o problema, mesmo que seja necessário perder a janela de deploy.
+Justificativa: o código cobra R$ 50,00, mas o contrato estabelece uma taxa TED de R$ 5,00. Alterar ou desabilitar o teste esconderia uma possível falha financeira. A prioridade é corrigir a implementação e validar os testes antes de publicar a versão, evitando cobranças incorretas aos clientes.
+
+🔥 -1 | 💰 R$ 30 mil | 🧹 -1
+
+## Pontuação Final (DIA 2): 🔥 0 | 💰 R$ 65 mil | 🧹 0
+
 
 ## 🔎 O caminho do MEU grupo (preencher na 3ª aula, quando o mapa for revelado)
 
