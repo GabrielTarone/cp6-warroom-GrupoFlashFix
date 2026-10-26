@@ -190,8 +190,6 @@ Uma linha por decisão registrada acima (usem os títulos ditados em aula):
 
 # 📋 PÓS-MORTEM · relatório de incidente (montar em sala na 3ª aula)
 
-> Rascunho em aula e commit final `pos-mortem:` até 23h59 do dia da 3ª aula.
-
 # Relatório WarRoom — FIAP Bank
 
 ## 1. Linha do tempo da madrugada
