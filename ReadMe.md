@@ -91,6 +91,9 @@ _(as decisões entram aqui, na ordem em que a madrugada as trouxer; placar inici
 🔥 ** · 💰 ** · 🧹 \_\_)_
 
 Problema Inicial:
+
+**Rodada 1**
+
 Voto D
 Realizar um Rollback para a versão de Terça-Feira
 🔥 -1 · 💰 R$ 15 mil · 🧹 +1
@@ -100,21 +103,21 @@ Seria a versão mais segura para seguir, visto que tomar uma decisão de "hotfix
 
 ---
 
-**Rodada 1**
+**Relâmpago A**
 
 Opção escolhida:
 B) Usar a query delivery
 
 🧹 -1 🔥 +1 para todos que escolheram B
 
-Questão Relâmpago:
+**Rodada 2**:
 
 Opção escolhida:
 A) PreparedStatement parametrizado agora
 
 🔥0 | 💰 0 | 🧹 0
 
-**Rodada 2**
+**Relâmpago B**
 
 Questão Relâmpago:: Opção escolhida: A)
 
@@ -136,7 +139,7 @@ A) Corrigir o getInstancia do singleton para guardar a instância
 Decisão: B) Corrigir o código e reprocessar os extratos antigos.
 Justificativa: corrigir apenas o código não resolve os registros incorretos já existentes. O reprocessamento corrige o histórico das transferências, mantendo a confiabilidade dos comprovantes sem movimentar o dinheiro novamente.
 
-🔥 +1 | 💰 R$ 15 mil | 🧹 -1
+🔥 +1 | 💰 R$ 25 mil | 🧹 -1
 
 
 **Rodada 5**
@@ -160,20 +163,28 @@ Justificativa: o código cobra R$ 50,00, mas o contrato estabelece uma taxa TED 
 
 🔥 -1 | 💰 R$ 30 mil | 🧹 -1
 
-## Pontuação Final (DIA 2): 🔥 0 | 💰 R$ 65 mil | 🧹 0
+## Pontuação Final (DIA 2): 🔥 0 | 💰 R$ 75 mil | 🧹 0
 
 
 ## 🔎 O caminho do MEU grupo (preencher na 3ª aula, quando o mapa for revelado)
 
 Uma linha por decisão registrada acima (usem os títulos ditados em aula):
 
+**Pontuação Inicial: | 🔥 7 · 💰 R$ 0 · 🧹 2 |**
+
 | #   | Decisão | Nossa letra | Consequência que ELA teria tido |
 | --- | ------- | ----------- | ------------------------------- |
-|     |         |             |                                 |
-|     |         |             |                                 |
-|     |         |             |                                 |
+|  1  | Realizar um Rollback para a versão de Terça-Feira |  D)     | 🔥 -1 · 💰 R$ 15 mil · 🧹 +1 |
+|  R. Relâmpago A |  Usar a query delivery |    B)       | 🔥 · 💰 · 🧹-1 |
+|  2  |   PreparedStatement parametrizado agora     |      A)     | 🔥 · 💰  · 🧹   |
+|  R. Relâmpago B |         |     A)      | 🔥 · 💰  · 🧹  |
+|  3  | Corrigir o getInstancia do singleton para guardar a instância |     A)      |  🔥 +1 · 💰 5 mil · 🧹 |
+|  4  | Corrigir o código e reprocessar os extratos antigos. |      B)     | 🔥 +1 · 💰 R$ 25 mil · 🧹 -1 |
+|  5  | Aplicar fail-fast na factory. |     A)      | 🔥 -1 · 💰  · 🧹   |
+|  R. Relâmpago C | Utilizar Builder com valores padrão. |   B)    | 🔥  · 💰  · 🧹  |
+|  6  | Investigar o problema, mesmo que seja necessário perder a janela de deploy. |    B)       | 🔥 -1 · 💰 R$ 30 mil · 🧹 -1 |
+## Pontuação Final : 🔥 6 | 💰 R$ 75 mil | 🧹 0
 
-_(adicionem linhas conforme as decisões da madrugada)_
 
 ---
 
@@ -181,34 +192,45 @@ _(adicionem linhas conforme as decisões da madrugada)_
 
 > Rascunho em aula e commit final `pos-mortem:` até 23h59 do dia da 3ª aula.
 
+# Relatório WarRoom — FIAP Bank
+
 ## 1. Linha do tempo da madrugada
 
----
-
----
-
----
+- **19h — Início da crise:&#x20;**&#x64;iante de um problema no sistema na véspera da Black Friday, a equipe optou por realizar um rollback para uma versão anterior. A partir daí, foi necessário lidar com problemas técnicos e consequências das decisões tomadas durante a madrugada.
+- **19h12 —  Rodada 1: identificamos uma vulnerabilidade de SQL Injection em uma consulta JDBC e optamos por corrigi-la utilizando&#x20;**`PreparedStatement` parametrizado.
+- **Consequência da Rodada 1 —&#x20;**&#x20;descobrimos um vazamento de conexões com o banco de dados, que poderia esgotar o pool. A decisão foi utilizar `try-with-resources` para fechar os recursos automaticamente.
+- **22h50 — Rodada 3:** contas diferentes receberam o mesmo número, `1001`, devido a um erro na implementação do Singleton. Escolhemos corrigir o método para reutilizar a mesma instância.
+- **00h47 — Rodada 4:** um comprovante PIX registrava incorretamente a origem e o destino da transferência, apesar de os saldos estarem corretos. Decidimos corrigir a gravação e reprocessar os extratos antigos, sem movimentar o dinheiro novamente.
+- **01h30 — Rodada 5:** os cadastros da Conta Universitária falhavam porque a fábrica retornava `null` para tipos não reconhecidos. Escolhemos implementar o tratamento fail-fast, com uma exceção clara para tipos não suportados.
+- **02h20 — Evento Relâmpago C:** o marketing solicitou cadastros contendo apenas nome e saldo. Escolhemos utilizar o padrão Builder com valores padrão para facilitar a construção dos objetos, mantendo a validação dos campos obrigatórios.
+- **03h45 — Rodada 6:** um teste revelou que a taxa TED estava sendo calculada como R$ 50,00, embora o contrato previsse R$ 5,00. Decidimos investigar e corrigir o problema, mesmo com o risco de perder a janela de deploy.
+- **04h00 — fechamento da janela de deploy:** horário-limite para publicação das alterações antes do congelamento previsto para a Black Friday.
+- **08h00 — abertura prevista da campanha:** horário estabelecido pelo diretor para o início da campanha, aumentando a pressão sobre a equipe para resolver os problemas sem comprometer a segurança e a confiabilidade do sistema.
 
 ## 2. Causa raiz de 2 incidentes (aula + mecanismo técnico)
 
-**Incidente 1:** ****\*\*****\*\*****\*\*****\_\_\_****\*\*****\*\*****\*\*****
+**Incidente 1: Vulnerabilidade de SQL Injection na busca de contas**
 
-Aula/mecanismo:
+**Aula/mecanismo:** segurança em banco de dados e consultas parametrizadas com JDBC.
 
----
+A causa raiz era a construção de uma consulta SQL por concatenação direta do nome informado pelo usuário. Isso permitia que uma entrada fosse interpretada como parte do comando SQL. A solução escolhida foi utilizar `PreparedStatement`, separando os dados da instrução SQL e reduzindo o risco de SQL Injection.
 
-**Incidente 2:** ****\*\*****\*\*****\*\*****\_\_\_****\*\*****\*\*****\*\*****
+**Incidente 2: Duplicidade de números de conta**
 
-Aula/mecanismo:
+**Aula/mecanismo:** padrão de projeto Singleton e gerenciamento do estado de objetos.
 
----
+A causa raiz estava no método `getInstancia()`, que criava um novo objeto `GeradorNumeroConta` a cada chamada, reiniciando o contador em `1001`. Escolhemos corrigir o método para reutilizar a instância, evitando que o contador fosse reiniciado a cada chamada no cenário apresentado.
 
 ## 3. O que faríamos diferente (2 rodadas + por quê)
 
----
+**Rodada 5 — Conta Universitária**
 
----
+Reconsideraríamos a decisão e retiraríamos temporariamente a Conta Universitária da campanha até que sua implementação estivesse pronta e testada. A abordagem fail-fast melhora o diagnóstico, mas, sozinha, não implementa o suporte ao novo tipo de conta. Seria mais seguro liberar o produto somente depois de garantir que a fábrica reconhece o tipo `UNIVERSITARIA` e consegue criar a conta corretamente.
+
+**Rodada 6 — Teste da taxa TED**
+
+Manteríamos a decisão de investigar o erro, mas executaríamos os testes automatizados continuamente durante o desenvolvimento e antes da janela de deploy. Assim, a divergência entre R$ 5,00 e R$ 50,00 poderia ser descoberta mais cedo, reduzindo a pressão da madrugada e o risco de atrasar a publicação. Não desabilitaríamos o teste nem alteraríamos o valor esperado apenas para liberar o deploy.
 
 ## 4. A maior lição da equipe
 
----
+A maior lição foi que a pressão por cumprir prazos não pode ser maior que a responsabilidade de manter um sistema financeiro confiável. Em uma crise, é necessário identificar a causa raiz dos problemas, corrigir as falhas e validar as soluções antes de publicar alterações. Esconder erros ou priorizar apenas a velocidade pode transformar um problema técnico em prejuízo financeiro e perda de confiança dos clientes. A comunicação e a colaboração da equipe são essenciais para tomar decisões responsáveis, mesmo quando isso significa adiar uma entrega.
