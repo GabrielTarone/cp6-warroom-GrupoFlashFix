@@ -87,9 +87,6 @@ segurança × faturamento × dívida). "Porque é mais seguro" não é justifica
 
 ## Dia 1 - qui 19h → 23h
 
-_(as decisões entram aqui, na ordem em que a madrugada as trouxer; placar inicial:
-🔥 ** · 💰 ** · 🧹 \_\_)_
-
 Problema Inicial:
 
 **Rodada 1**
